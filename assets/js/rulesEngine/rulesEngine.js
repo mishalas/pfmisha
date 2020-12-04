@@ -7,9 +7,9 @@ import DiceUtil from './dice/diceUtil'
  * @property {DiceUtil} diceUtil
  */
 class RulesEngine {
-  constructor() {
-    this.diceUtil = new DiceUtil()
-  }
+    constructor() {
+        this.diceUtil = new DiceUtil()
+    }
 }
 
 export default new RulesEngine()
