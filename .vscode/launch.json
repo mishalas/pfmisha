@@ -9,7 +9,18 @@
             "request": "launch",
             "name": "Localhost:3000",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "breakOnLoad": true,
+            "sourceMapPathOverrides": {
+                "webpack:///assets/js/*": "${webRoot}/assets/js/*",
+                "webpack:///components/*": "${webRoot}/components/*",
+                "webpack:///pages/*": "${webRoot}/pages/*",
+                "webpack:///layouts/*": "${webRoot}/layouts/*",
+                "webpack:///middleware/*": "${webRoot}/middleware/*",
+                "webpack:///plugins/*": "${webRoot}/plugins/*",
+                "webpack:///store/*": "${webRoot}/store/*",
+                "webpack:///utils/*": "${webRoot}/utils/*"
+            }
         }
     ]
 }

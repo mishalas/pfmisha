@@ -1,6 +1,6 @@
 // rulesEngine.js
 
-import DiceUtil from './dice/diceUtil'
+import DiceUtil, { DiceTypes, DiceDescriptor } from './dice/diceUtil'
 
 /**
  * Main class and entry point for the rules engine
@@ -12,4 +12,5 @@ class RulesEngine {
     }
 }
 
+export { DiceTypes, DiceDescriptor }
 export default new RulesEngine()

@@ -5,15 +5,11 @@ import DiceUtil from '~/assets/js/rulesEngine/dice/diceUtil'
 const diceUtil = new DiceUtil()
 
 describe('DiceUtil tests', () => {
-    it('Validates good dice roll request parameters', () => {
-        expect(diceUtil.isValidRollRequest(1, 1, 8, 2)).toBeTruthy()
+    describe('getDiceDisplayText() tests', () => {
+        it('Returns default display for null arguments', () => {
+            expect(diceUtil.getDiceDisplayText(null, null, null)).toEqual('1d6')
+        })
     })
 
-    it('Invalidates missing "count" parameter', () => {
-        expect(diceUtil.isValidRollRequest(null, 1, 8, 2)).toBeFalsy()
-    })
-
-    it('Invalidates missing "min" parameter', () => {
-        expect(diceUtil.isValidRollRequest(1, null, 8, 2)).toBeFalsy()
-    })
+    describe('isValidRollRequest() tests', () => {})
 })
