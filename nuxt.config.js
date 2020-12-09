@@ -36,20 +36,7 @@ export default {
         // https://go.nuxtjs.dev/eslint
         '@nuxtjs/eslint-module',
         // https://go.nuxtjs.dev/vuetify
-        [
-            '@nuxtjs/vuetify',
-            {
-                theme: {
-                    themes: {
-                        dark: {
-                            primary: colors.red.darken1,
-                            secondary: colors.red.lighten4,
-                            accent: colors.indigo.base,
-                        },
-                    },
-                },
-            },
-        ],
+        ['@nuxtjs/vuetify', { theme: { dark: true } }],
     ],
 
     // Modules (https://go.nuxtjs.dev/config-modules)

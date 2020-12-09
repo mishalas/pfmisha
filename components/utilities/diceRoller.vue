@@ -1,54 +1,72 @@
 <template>
-    <v-row>
-        <v-col>
-            <v-card>
-                <v-card-title class="card-title-tight"
-                    >Dice Roller</v-card-title
+    <v-card>
+        <v-card-title class="utility-card-title">Dice Roller</v-card-title>
+        <v-card-subtitle class="utility-card-subtitle">{{
+            diceRequestDisplay
+        }}</v-card-subtitle>
+        <v-card-actions class="utility-card-actions">
+            <v-text-field
+                v-model="count"
+                label="Count"
+                type="number"
+                min="1"
+                class="short-number-input"
+            ></v-text-field>
+            <v-select
+                v-model="diceType"
+                label="Dice"
+                :items="diceTypes"
+                class="dice-type-select"
+            >
+            </v-select>
+            <v-text-field
+                v-if="diceType === 'd?'"
+                v-model="min"
+                label="Min"
+                type="number"
+                min="0"
+                class="short-number-input"
+            ></v-text-field>
+            <v-text-field
+                v-if="diceType === 'd?'"
+                v-model="max"
+                label="Max"
+                type="number"
+                min="1"
+                class="short-number-input"
+            ></v-text-field>
+            <v-text-field
+                v-model="modifier"
+                label="Mod"
+                type="number"
+                class="short-number-input"
+            ></v-text-field>
+            <v-btn
+                class="utility-action-button roll-btn"
+                @click="onRollBtnClick"
+                >Roll</v-btn
+            >
+            <label>&nbsp;=&nbsp;</label>
+            <v-text-field
+                v-model="total"
+                label="Total"
+                type="number"
+                readonly
+                class="total-text"
+            ></v-text-field>
+        </v-card-actions>
+        <v-card-text>
+            <v-chip-group column>
+                <v-chip
+                    v-for="(roll, index) in rolls"
+                    :key="index"
+                    label
+                    outlined
+                    >{{ roll }}</v-chip
                 >
-                <v-card-subtitle>{{ diceRequestDisplay }}</v-card-subtitle>
-                <v-card-actions>
-                    <v-text-field
-                        v-model="count"
-                        label="Count"
-                        type="number"
-                        min="1"
-                        class="short-number-input"
-                    ></v-text-field>
-                    <v-select
-                        v-model="diceType"
-                        label="Type"
-                        :items="diceTypes"
-                        class="dice-type-select"
-                    >
-                    </v-select>
-                    <v-text-field
-                        v-if="diceType === 'd?'"
-                        v-model="min"
-                        label="Min"
-                        type="number"
-                        min="0"
-                        class="short-number-input"
-                    ></v-text-field>
-                    <v-text-field
-                        v-if="diceType === 'd?'"
-                        v-model="max"
-                        label="Max"
-                        type="number"
-                        min="1"
-                        class="short-number-input"
-                    ></v-text-field>
-                    <v-text-field
-                        v-model="modifier"
-                        label="Mod"
-                        type="number"
-                        class="short-number-input"
-                    ></v-text-field>
-                    <v-btn class="roll-btn" @click="onRollBtnClick">Roll</v-btn>
-                </v-card-actions>
-                <v-card-text>{{ rollResult }}</v-card-text>
-            </v-card>
-        </v-col>
-    </v-row>
+            </v-chip-group>
+        </v-card-text>
+    </v-card>
 </template>
 
 <script>
@@ -82,6 +100,12 @@ export default {
                 this.modifier
             )
         },
+        rolls() {
+            return this.rollResult ? this.rollResult.rolls : []
+        },
+        total() {
+            return this.rollResult ? this.rollResult.total : 0
+        },
     },
     watch: {
         dice(newDice, oldDice) {
@@ -109,9 +133,6 @@ export default {
 </script>
 
 <style>
-.card-title-tight {
-    padding: 5px;
-}
 .short-number-input {
     max-width: 50px;
     margin: 2px;
@@ -122,5 +143,8 @@ export default {
 }
 .roll-btn {
     margin-left: 5px;
+}
+.total-text input {
+    text-align: right;
 }
 </style>
